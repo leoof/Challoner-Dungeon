@@ -1,29 +1,48 @@
+## Importing modules for later use in the program
 import os
+import random
 import time
-global welcome
+
+## Command(s)
+def txtSplit():
+  global inputlist
+  global length
+  unsplitted = cmdInput
+  inputlist = unsplitted.split(' ')
+  length = len(inputlist)
+  print(inputlist)
+  print(length)
+
+## Add more ideas for trap rooms, easy, medium or hard
+## Will also be adding corridors and stuff where you can get rushed by enemies with a danger level based on the room
+trapRooms = {
+  "platetrap" : "easy", #pressure plate triggers a dart trap or boulder or smth idk llo
+  
+}
 
 
-def introSeq():
-  wait = time.sleep(0.5)
-  print("While waiting for your iPad to be updated,")
-  wait
-  print("The walls shift, and you see a secret passageway.")
-  wait
-  print("You enter.")
 
 def menuScreen():
   t = open("menu.txt", "r")
+  print(" ")
   print(t.read())
-  time.sleep(2)
-  start = input("Press enter to start. ")
 
-  if start == "":
-    welcome = True
 
-introSeq()
+def roomPlateTrap():
+  print("there is pressure plate lol. If you dont jump you die")
+  try:
+    choice = str(input("What will you do?")).lower
+    if choice == "run":
+      print("You died lol")
+  except:
+    print("Nah")
+
+def roomReader(room):
+  global currentRoom
+  currentRoom = random.choice(rooms) 
+  if currentRoom == "platetrap":
+    roomPlateTrap()
+
 menuScreen()
 
-if welcome == True:
-  t = open("welcomeToHell.txt", "r")
-  print(t.read())
-
+roomReader()
